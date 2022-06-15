@@ -5,7 +5,8 @@ using namespace std;
 
 int main()
 {
-    int arr[] = {-5, 4, 6, -3, 4, -1};
+    // [4,5,0,-2,-3,1]
+    int arr[] = {4, 5, 0, -2, -3, 1};
     int len=sizeof(arr)/sizeof(arr[0]);
 
     int currSum=0;

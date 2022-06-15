@@ -14,7 +14,6 @@ void push_at_bottom(stack<int> &st, int val){
 
     // Recursive call
     push_at_bottom(st, val);
-
     st.push(top);
 }
 
