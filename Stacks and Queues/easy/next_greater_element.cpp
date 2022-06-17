@@ -2,11 +2,11 @@
 using namespace std;
 
 vector<int> next_max_element(vector<int> arr){
-    int infinity = INT_MAX;
     int n = arr.size();
     vector<int> result(n);
 
 //       STEP1: Initializing stack with a very large number
+    int infinity = INT_MAX;
     stack<int> st;
     st.push(infinity);
 
