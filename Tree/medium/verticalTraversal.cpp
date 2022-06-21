@@ -39,6 +39,8 @@ void preOrder(node* root){
     preOrder(root->right);
 }
 
+
+// My Approach
 vector<int> verticalOrder(node *root)
 {
     vector<int> result;
@@ -73,6 +75,48 @@ vector<int> verticalOrder(node *root)
     for (auto i : map){
         for (auto j : i.second){
             result.push_back(j);
+        }
+    }
+    return result;
+}
+
+// Mentor Approach
+vector<int> verticalOrder(node *root)
+{
+    vector<int> result;
+    if (root == NULL)
+        return result;
+
+    map<int, map<int, vector<int>>> map;
+    queue<pair<node *, pair<int, int>>> q;
+
+    // Queue Initiallization
+    q.push({root, {0, 0}}); // initially Horizontal Distance == 0 and Level == 0    {consider levels start from zero}
+
+    while (!q.empty()){
+
+        // Fetch Front Element from Queue
+        pair<node *, pair<int, int>> temp = q.front();
+        q.pop();
+
+        node *frontnode = temp.first;
+        int hd = temp.second.first;
+        int level = temp.second.second;
+
+        // Do mapping of Fetched Element
+        map[hd][level].push_back(frontnode->data);
+
+        // Push Left node and right node(if exist) for level order traversal
+        if (frontnode->left)
+            q.push({frontnode->left, {hd - 1, level + 1}});
+        if (frontnode->right)
+            q.push({frontnode->right, {hd + 1, level + 1}});
+    }
+
+    for (auto i : map){
+        for (auto j : i.second){
+            for (auto k : j.second)
+                result.push_back(k);
         }
     }
     return result;
