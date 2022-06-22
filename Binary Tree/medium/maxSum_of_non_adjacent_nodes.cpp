@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+
 class node{
 public:
     int data;
@@ -14,7 +15,7 @@ public:
 
 node* buildTree(node* root){
     int data;
-    cout << "Enter Data : " << endl;
+    cout << "Enter Data : ";
     cin >> data;
     root = new node(data);
 
@@ -30,46 +31,33 @@ node* buildTree(node* root){
     return root;
 }
 
-
-void preOrder(node* root){
+pair<int, int> solve(node* root){ // {MaxSum Including Currnode, MaxSum Excluding Currnode}
+// Base Case
     if(root == NULL)
-       return;
-    cout << root->data << " ";
-    preOrder(root->left);
-    preOrder(root->right);
+        return {0, 0};
+
+    pair<int, int> left = solve(root->left);
+    pair<int, int> right = solve(root->right);
+
+// MaxSum including Current node
+    int a = root->data + left.second + right.second;
+    int b = max(left.first, left.second) + max(right.first, right.second);
+
+    return {a, b};
 }
-
-void inOrder(node* root){
-    if(root == NULL)
-       return;
-    inOrder(root->left);
-    cout << root->data << " ";
-    inOrder(root->right);
-}
-
-void postOrder(node* root){
-    if(root == NULL)
-       return;
-    postOrder(root->left);
-    postOrder(root->right);
-    cout << root->data << " ";
+int getMaxSum(node *root)
+{
+    pair<int, int> temp = solve(root);
+    int a = temp.first;
+    int b = temp.second;
+    return max(a,b);
 }
 
 int main()
 {
+    // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     node* root = NULL;
     root = buildTree(root);
 
-    preOrder(root);
-    cout << endl;
-
-    inOrder(root);
-    cout << endl;
-
-    postOrder(root);
-    cout << endl;
-
-
-// 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
     return 0;
 }
