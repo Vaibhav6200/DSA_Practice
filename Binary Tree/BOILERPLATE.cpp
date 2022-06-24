@@ -2,22 +2,22 @@
 using namespace std;
 
 
-class node{
+class Node{
 public:
     int data;
-    node* left;
-    node* right;
-    node(int val){
+    Node* left;
+    Node* right;
+    Node(int val){
         data = val;
         left = right = NULL;
     }
 };
 
-node* buildTree(node* root){
+Node* buildTree(Node* root){
     int data;
     cout << "Enter Data : ";
     cin >> data;
-    root = new node(data);
+    root = new Node(data);
 
     if(data == -1)
         return NULL;
@@ -31,7 +31,7 @@ node* buildTree(node* root){
     return root;
 }
 
-void preOrder(node* root){
+void preOrder(Node* root){
     if(root == NULL)
        return;
     cout << root->data << " ";
@@ -42,7 +42,7 @@ void preOrder(node* root){
 int main()
 {
     // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-    node* root = NULL;
+    Node* root = NULL;
     root = buildTree(root);
 
     return 0;

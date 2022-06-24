@@ -1,10 +1,8 @@
-// This Question is asked in "GOOGLE INTERVIEW"
 #include<bits/stdc++.h>
 using namespace std;
 
-
 class Node{
-public:
+    public:
     int data;
     Node* left;
     Node* right;
@@ -19,15 +17,11 @@ Node* predecessor(Node* pred, Node* curr){
         return NULL;
     while(pred->right!=NULL && pred->right != curr)
         pred = pred->right;
-
     return pred;
 }
 
-
-//  Moris Traversal - { Time- O(n), Space - O(1) }
-
-void inOrder(Node* root, vector<int> &arr)
-{
+//     Using Morris Traversal
+void inOrder(Node* root, vector<int> &arr){
     Node* curr = root;
     while(curr != NULL)
     {
@@ -49,4 +43,31 @@ void inOrder(Node* root, vector<int> &arr)
             }
         }
     }
+}
+
+
+
+Node* makeTreeFromInorder(vector<int> arr, int start, int end){
+    if(start == end)
+        return new Node(arr[start]);
+
+    int mid = (start+end)/2;
+    Node* root = new Node(arr[mid]);
+
+//     make left subtree using recursion
+    root->left = makeTreeFromInorder(arr, start, mid-1);
+    root->right = makeTreeFromInorder(arr, mid+1, end);
+
+    return root;
+}
+
+Node* mergeTrees(Node* root) {
+    vector<int> arr;
+    inOrder(root, arr);
+
+    int start = 0;
+    int end = arr.size() - 1;
+    Node* ans = makeTreeFromInorder(arr, start, end);
+
+    return ans;
 }

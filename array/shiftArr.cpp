@@ -1,58 +1,63 @@
 // A sorted array of distinct integers shiftArr is shifted to the left by an unknown offset and you don’t have a pre-shifted copy of it. For instance, the sequence 1, 2, 3, 4, 5 becomes 3, 4, 5, 1, 2, after shifting it twice to the left.
 // Given shiftArr and an integer num, implement a function shiftedArrSearch that finds and returns the index of num in shiftArr. If num isn’t in shiftArr, return -1. Assume that the offset can be any value between 0 and arr.length - 1.
+#include <iostream>
+#include <vector>
 
-#include<bits/stdc++.h>
 using namespace std;
 
-int find_index(vector<int> arr, int num){
- for(int i=0; i<arr.size(); i++){
-   if(arr[i] == num)
-    return i;
- }
-  return -1;  // means element not present in array
+
+/*
+[9, 12, 17, 2, 4, 5]
+ l      m         h
+l = 0
+m = (l+h)/2
+h = n-1
+
+if(arr[m] == num)
+return m;
+
+search(arr, l, m, num);
+search(arr, m+1, h, num);
+
+num = 7
+
+20  30  40  50  60  5  7  10
+l            m            h
+                 l  m     r
+
+17 2 4 5 9 12
+l    m      h
+l  m r
+
+*/
+
+int search(vector<int>& arr, int l, int h, int num) {
+  if(arr[l] == num)
+    return l;
+  if(arr[h] == num)
+    return h;
+  if(arr[l]>num || arr[h]<num)
+    return -1;
+
+  int m = (l+h)/2;
+  if(search(arr, l, m, num) == -1)
+    return search(arr, m+1, h, num);
+  return search(arr, l, m, num);
 }
 
-int shiftedArrSearch(vector<int>& shiftArr, int num )
+int shiftedArrSearch( const vector<int>& shiftedArr, int num )
 {
-  int index = find_index(shiftArr, num);
-  if(index == -1){
-      cout << "Element does not Exist" << endl;
-      return -1;
-  }
-  int n = index;
-  // Now we have to shift array "index" Times
-  while(index!=0){
-    int temp = shiftArr[0];
-    shiftArr.erase(shiftArr.begin() + 0);
-    shiftArr.push_back(temp);
-    index--;
-  }
-  return n;
+  // your code goes here
+  vector<int> arr = shiftedArr;
+  int n = arr.size();
+  int l=0, h=n-1;
+  int m = l + (h-l)/2;
+
+  if(search(arr, l, m, num) == -1)
+    return search(arr, m+1, h, num);
+  return search(arr, l, m, num);
 }
 
 int main() {
-  vector<int> shiftArr;
-  shiftArr.push_back(9);
-  shiftArr.push_back(12);
-  shiftArr.push_back(17);
-  shiftArr.push_back(2);
-  shiftArr.push_back(4);
-  shiftArr.push_back(5);
-
-  cout << "Before Shifting : ";
-  for(auto i: shiftArr)
-      cout << i << " ";
-  cout << endl;
-
-
-  int num=2;
-  int n = shiftedArrSearch(shiftArr, num);
-  cout << n << endl;
-
-  cout << "After Shifting : ";
-  for(auto i: shiftArr)
-      cout << i << " ";
-  cout << endl;
-
   return 0;
 }
