@@ -1,5 +1,4 @@
-
-    #include<bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 
@@ -13,24 +12,6 @@ public:
         left = right = NULL;
     }
 };
-
-node* buildTree(node* root){
-    int data;
-    cout << "Enter Data : ";
-    cin >> data;
-    root = new node(data);
-
-    if(data == -1)
-        return NULL;
-
-    cout << "Enter data to insert at left of " << data << endl;
-    root->left = buildTree(root->left);
-
-    cout << "Enter data to insert at right of " << data << endl;
-    root->right = buildTree(root->right);
-
-    return root;
-}
 
 node* lca(node* root ,int n1 ,int n2 )
 {
@@ -56,13 +37,4 @@ node* lca(node* root ,int n1 ,int n2 )
 
     if(leftAns != NULL && rightAns != NULL)
         return root;
-}
-
-int main()
-{
-    // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-    node* root = NULL;
-    root = buildTree(root);
-
-    return 0;
 }
