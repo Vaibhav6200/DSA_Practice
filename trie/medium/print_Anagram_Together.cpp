@@ -70,11 +70,6 @@ public:
         vector<vector<string>> temp;       // this temp contains index of anagrams
         findUtil(root, temp);
 
-        for(auto i: temp){
-            for(auto j: i)
-                cout << j << " ";
-            cout << endl;
-        }
         return temp;
     }
 };
@@ -109,7 +104,11 @@ int main()
     // Step4: go to all leaf Nodes of trie (it will contain vector of all anagrams)
     vector<vector<string>> temp = t->findAllAnagrams();
 
-
+    for(auto i: temp){
+        for(auto j: i)
+            cout << j << " ";
+        cout << endl;
+    }
 
 
     return 0;
