@@ -1,8 +1,7 @@
-// { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+
 class Solution {
   public:
     bool isCycleBFS(int v, vector<int> &visited, vector<int> adj[]){
@@ -75,7 +74,7 @@ class Solution {
     }
 };
 
-// { Driver Code Starts.
+
 int main() {
     int tc;
     cin >> tc;
