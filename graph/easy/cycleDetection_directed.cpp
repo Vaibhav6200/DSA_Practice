@@ -1,8 +1,7 @@
-// { Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+
 class Solution {
   public:
 /*
@@ -151,4 +150,3 @@ int main() {
 
     return 0;
 }
-  // } Driver Code Ends
