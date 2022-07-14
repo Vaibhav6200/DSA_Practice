@@ -1,6 +1,6 @@
 /*
     *** APPROACH ***
-
+Finding MST using prim algo and then we will take sum of all values in "key" array
 */
 #include<bits/stdc++.h>
 using namespace std;
