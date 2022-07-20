@@ -3,7 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// Method 1: Time Complexity => O(n^2)
+// Method 1: (Using 2 For Loops) Time Complexity => O(n^2)
 // vector<int> twoSum(vector<int> &arr, int target){
 //     vector<int> v;
 //     for(int i=0; i<arr.size(); i++){
