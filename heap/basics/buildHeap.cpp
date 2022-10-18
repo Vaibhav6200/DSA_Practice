@@ -29,7 +29,7 @@ void heapify(int arr[], int size, int i){
 
 int main()
 {
-    int arr[] = {-1, 1, 2, 3, 4, 5};
+    int arr[] = {-1, 1, 2, 3, 4, 5};        // -1 added at start because of 1 based indexing
     int size = 5;
 
     for(int i=size/2; i>0; i--)
